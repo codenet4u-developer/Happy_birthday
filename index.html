@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>A Letter For Her — Happy Birthday</title>
+<meta name="description" content="A little birthday letter, chapter by chapter.">
+
+<!-- Fonts: a restrained serif/script pairing for the "handwritten letter" feel -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     AMBIENT LAYERS — persist behind every chapter, never rebuilt
+     ============================================================ -->
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__grain"></div>
+  <div class="ambient__glow ambient__glow--one"></div>
+  <div class="ambient__glow ambient__glow--two"></div>
+  <div id="starfield" class="starfield"></div>
+  <div id="heartfield" class="heartfield"></div>
+  <div id="balloonfield" class="balloonfield"></div>
+</div>
+
+<!-- ============================================================
+     CHAPTER MARKER — elegant, unobtrusive progress indicator
+     ============================================================ -->
+<div class="chapter-marker" id="chapterMarker" aria-hidden="true">
+  <span class="chapter-marker__numeral" id="chapterNumeral">I</span>
+  <span class="chapter-marker__label" id="chapterLabel">Welcome</span>
+</div>
+
+<!-- ============================================================
+     PERSISTENT MUSIC PLAYER — one <audio> element, never recreated
+     ============================================================ -->
+<audio id="theSong" src="assets/audio/03 - Tum Ho Toh.mp3" loop preload="none"></audio>
+<button id="miniPlayer" class="mini-player" type="button" aria-label="Play our song" hidden>
+  <span class="mini-player__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="mini-player__text">Our Song</span>
+</button>
+
+<main id="storyRoot" class="story">
+
+  <!-- ========================= STEP 1 — WELCOME ========================= -->
+  <section class="chapter chapter--welcome is-active" data-step="welcome" data-numeral="I" data-label="Welcome">
+    <div class="chapter__inner">
+      <p class="eyebrow">— 12 September —</p>
+      <!-- CUSTOMIZE: her name lives here -->
+      <h1 class="display-heading" data-editable="recipient-heading">Happy Birthday,<br><span class="accent-script">My Pretty Love</span> <span class="heart-mark">❤</span></h1>
+      <p class="lede">Before anything else — take a breath. This one's just for you.</p>
+      <button class="btn btn--primary" data-next type="button">
+        <span>It's your special day</span>
+        <span class="btn__spark" aria-hidden="true">✨</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================= STEP 2 — THE COMPLIMENT ========================= -->
+  <section class="chapter chapter--compliment" data-step="compliment" data-numeral="II" data-label="A Small Truth">
+    <div class="chapter__inner">
+      <p class="eyebrow">— chapter two —</p>
+      <h2 class="display-heading display-heading--mid">Have you looked at it, madam ji? <span class="accent-script">✨</span></h2>
+      <p class="lede lede--playful">Go on. Look again. That's the most beautiful thing I've seen today.</p>
+      <button class="btn btn--outline" data-next type="button">Start</button>
+    </div>
+  </section>
+
+  <!-- ========================= STEP 3 — SETTING THE STAGE ========================= -->
+  <section class="chapter chapter--stage" data-step="stage" data-numeral="III" data-label="The Stage">
+    <div class="chapter__inner">
+      <p class="eyebrow">— chapter three —</p>
+      <h2 class="display-heading display-heading--mid">The stage is set<span class="ellipsis">...</span> <span class="moon-mark">🌙</span></h2>
+      <p class="lede">Somewhere between the stars and this screen, a little something is waiting for you.</p>
+      <button class="btn btn--outline" data-next type="button">Start the Animated Moment</button>
+    </div>
+  </section>
+
+  <!-- ========================= STEP 4 — CONTROLS & ATMOSPHERE ========================= -->
+  <section class="chapter chapter--controls" data-step="controls" data-numeral="IV" data-label="Set the Mood">
+    <div class="chapter__inner">
+      <p class="eyebrow">— chapter four —</p>
+      <h2 class="display-heading display-heading--mid">Set the mood, love.</h2>
+      <p class="lede">A little music. A little color. Then — the letter.</p>
+
+      <div class="controls-row">
+        <button id="musicToggle" class="btn btn--glass" type="button" aria-pressed="false">
+          <span class="btn__icon" aria-hidden="true">♪</span>
+          <span id="musicToggleLabel">Play Our Song</span>
+        </button>
+        <button id="balloonToggle" class="btn btn--glass" type="button" aria-pressed="false">
+          <span class="btn__icon" aria-hidden="true">◌</span>
+          <span id="balloonToggleLabel">Let the Colors Fly</span>
+        </button>
+      </div>
+
+      <button class="btn btn--primary" data-next type="button">
+        <span>Show Message</span>
+        <span class="btn__spark" aria-hidden="true">💌</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================= STEP 5 — THE GRAND REVEAL ========================= -->
+  <section class="chapter chapter--reveal" data-step="reveal" data-numeral="V" data-label="The Letter">
+    <div class="chapter__inner chapter__inner--wide">
+
+      <!-- Wax seal signature moment: sits over the letter, cracks open on reveal -->
+      <div id="waxSeal" class="wax-seal" aria-hidden="true">
+        <div class="wax-seal__disc">
+          <span class="wax-seal__mark">❤</span>
+        </div>
+      </div>
+
+      <article id="letter" class="letter">
+        <p class="letter__salutation" data-editable="letter-salutation">Happy Birthday, my love ❤️</p>
+
+        <!-- ================================================================
+             CUSTOMIZE HERE: replace the paragraphs below with the client's
+             personalized letter. Each <p> becomes one reveal line.
+             ================================================================ -->
+        <div id="letterBody" class="letter__body" data-editable="letter-body">
+        
+<p>Heyy Jaaaan💋 Happiest 18th Birthday, my love! 🎂❤️</p>
+<p>Today is extra special because you’re officially 18 and starting a beautiful new chapter of life.</p>
+<p>May Allah Almighty always keep you successful, happy, safe, and blessed, and please never take too much stress about life because I’m always here for you and I’ll always stand by your side🫠</p>
+<p>You are truly so important to me, and InshaAllah, we’ll grow together, build a beautiful future, get married, have our own little family, and stay together through every good and bad moment.</p>
+<p>I’m really, really sorry for every time I’ve hurt you or made you sad—please forgive me. I never want to hurt you, and I really, really love you so much💕</p>
+<p>I hope we never leave each other, never give up on us, and always choose each other.</p>
+<p>You once gave me such a beautiful old-vintage-style letter, so this time I wrote this digital letter especially for you, straight from my heart💗</p>
+<p>How was it? 🫶🏻</p>
+<p>Happy 18th, my أنتَ الحَياتِ 🫀</p>
+<p>InshaAllah, this is just the beginning of our beautiful story🌍🥺💋</p>
+      </div>
+        <p class="letter__signoff" data-editable="letter-signoff">Happy Birthday, my pretty love. ❤️</p>
+      </article>
+
+      <button id="memoriesBtn" class="btn btn--outline btn--reveal-late" data-next type="button" hidden>
+        Our Memories <span aria-hidden="true">📸</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================= STEP 6 — OUR MEMORIES ========================= -->
+  <section class="chapter chapter--gallery" data-step="gallery" data-numeral="VI" data-label="Our Memories">
+    <div class="chapter__inner chapter__inner--wide">
+      <p class="eyebrow">— chapter six —</p>
+      <h2 class="display-heading display-heading--mid">Our Memories</h2>
+
+      <div class="gallery" id="gallery">
+        <div class="gallery__frame">
+          <!-- ================================================================
+               CUSTOMIZE HERE: swap src/caption for each real photo.
+               Filenames can stay .jpg — just replace the files in
+               assets/images/ and update src below to match.
+               ================================================================ -->
+          <div class="gallery__slide is-active" data-index="0">
+            <img src="assets/images/photo 05.jpeg" alt="A memory together" loading="lazy">
+            <p class="gallery__caption" data-editable="caption-1">Where it all feels right ❤️</p>
+          </div>
+          <div class="gallery__slide" data-index="1">
+            <img src="assets/images/photo 01.jpeg" alt="A memory together" loading="lazy">
+            <p class="gallery__caption" data-editable="caption-2">One of my favorite memories.</p>
+          </div>
+          <div class="gallery__slide" data-index="2">
+            <img src="assets/images/photo 02.jpeg" alt="A memory together" loading="lazy">
+            <p class="gallery__caption" data-editable="caption-3">Just you and me.</p>
+          </div>
+          <div class="gallery__slide" data-index="3">
+            <img src="assets/images/photo 03.jpeg" alt="A memory together" loading="lazy">
+            <p class="gallery__caption" data-editable="caption-4">Still my favorite view.</p>
+          </div>
+          <div class="gallery__slide" data-index="4">
+            <img src="assets/images/photo 06.jpeg" alt="A memory together" loading="lazy">
+            <p class="gallery__caption" data-editable="caption-5">Here's to many more like this.</p>
+          </div>
+        </div>
+
+        <button class="gallery__arrow gallery__arrow--prev" id="galleryPrev" type="button" aria-label="Previous memory">‹</button>
+        <button class="gallery__arrow gallery__arrow--next" id="galleryNext" type="button" aria-label="Next memory">›</button>
+
+        <div class="gallery__dots" id="galleryDots" role="tablist" aria-label="Memory selector"></div>
+      </div>
+
+      <button class="btn btn--primary" data-next type="button">
+        <span>One More Thing</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================= FINAL MOMENT ========================= -->
+  <section class="chapter chapter--final" data-step="final" data-numeral="VII" data-label="Always">
+    <div class="chapter__inner">
+      <p class="final__line final__line--one" data-editable="final-line-one">Here's to many more memories with you.</p>
+      <p class="final__line final__line--two" data-editable="final-line-two">Happy Birthday, My Love.</p>
+      <div class="final__heart" aria-hidden="true">❤</div>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
